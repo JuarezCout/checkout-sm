@@ -1,0 +1,15 @@
+.home {
+    height: auto;
+    align-items: center;
+    position: relative
+}
+
+.home h2 {
+    margin-left: 30px;
+    text-align: left;
+    margin: 0;
+    position: absolute;            
+    top: 50%;                       
+    transform: translate(0, -50%)
+}
+
