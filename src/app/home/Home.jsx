@@ -5,12 +5,15 @@ import { Row, Col } from 'react-bootstrap'
 
 export default function Home ({ stripeTkon }) {
     return  (
-    <div className="home">
+    <div id="home">
         <Row>
             <Col xs="7">
                 <h2>Sistema de Carrinho e Checkout para Supermercados</h2>
             </Col>
-            <Col xs="5">
+            <Col xs="1">
+                <br/>   
+            </Col>
+            <Col xs="3">
                 <img src="https://m.gifmania.pt/Gifs-Animados-Objetos/Imagens-Animadas-Lar/Gif-Animados-Shopping-Carts/Shopping-Carts-90317.gif" 
                 alt="Shop Run!"
                 width="200px"

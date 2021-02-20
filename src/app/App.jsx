@@ -2,7 +2,6 @@ import React from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 
-import Layout from './layout/Layout';
 import Home from './home/Home';
 import Header from './layout/header/Header';
 import Footer from './layout/footer/Footer';

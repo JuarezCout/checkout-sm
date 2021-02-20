@@ -10,6 +10,7 @@ export default function Header() {
             <Nav className="mr-auto">
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="#carrinho">Carrinho</Nav.Link>
+                <Nav.Link href="#promocao">Promoções</Nav.Link>
             </Nav>
         </Navbar>
     )
