@@ -21,14 +21,20 @@ export default function Carrinho({ stripeTkon }) {
     ]
 
     const promocoes = [
-        {id: 0, produtoId: 1, desconto: 10},
-        {id: 1, produtoId: 5, desconto: 15},
-        {id: 2, produtoId: 3, desconto: 20}
+        { id: 0, produtoId: 1, desconto: 10 },
+        { id: 1, produtoId: 5, desconto: 15 },
+        { id: 2, produtoId: 3, desconto: 20 }
     ]
 
     const [inputCarrinho, setInputCarrinho] = useState(
         [
-            
+
+        ]
+    );
+
+    const [inputCheckout, setInputCheckout] = useState(
+        [
+
         ]
     );
 
@@ -69,7 +75,7 @@ export default function Carrinho({ stripeTkon }) {
             }
         }
         for (let index = 0; index < promocoes.length; index++) {
-            if(promocoes[index].produtoId == id){
+            if (promocoes[index].produtoId == id) {
                 desc = promocoes[index].desconto;
             }
         }
@@ -107,11 +113,27 @@ export default function Carrinho({ stripeTkon }) {
     }
 
     //funcao para realizar soma total mostrando descontos aplicados
-    function fazerCheckout(){
-   /*      if (document.getElementById('checkout').style.display === "block") {
-            document.getElementById('checkout').style.display = "none";
-        } */
+    function fazerCheckout() {
+        /*      if (document.getElementById('checkout').style.display === "block") {
+                 document.getElementById('checkout').style.display = "none";
+             } */
+        let somaTotal = 0, somaDesconto = 0, somaPagar = 0;
+        let valor, qtd, desc = 0;
+
         document.getElementById('checkout').style.display = "block";
+
+        for (let index = 0; index < inputCarrinho.length; index++) {
+            valor = inputCarrinho[index].valor;
+            qtd = inputCarrinho[index].qtd;
+            desc = inputCarrinho[index].desconto;
+
+            somaTotal = somaTotal + (valor * qtd);
+            somaDesconto = somaDesconto + ((somaTotal * desc) / 100);
+        }
+        somaPagar = addZeros((somaTotal-somaDesconto) / 100);
+        somaTotal = addZeros(somaTotal / 100);
+        somaDesconto = addZeros(somaDesconto / 100);
+        setInputCheckout([{ somaTotal: somaTotal, somaDesconto: somaDesconto, somaPagar: somaPagar }])
 
     }
 
@@ -161,7 +183,7 @@ export default function Carrinho({ stripeTkon }) {
                                         <span style={{ color: 'red' }}>{produto.desconto}%</span>
                                     </td>
                                     <td width="10%">
-                                        <span className="text-muted">{addZeros((produto.valor * produto.qtd*((100-produto.desconto)/100) ) / 100 )}</span>
+                                        <span className="text-muted">{addZeros((produto.valor * produto.qtd * ((100 - produto.desconto) / 100)) / 100)}</span>
                                     </td>
                                 </tr>
                             ))}
@@ -185,14 +207,19 @@ export default function Carrinho({ stripeTkon }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td width="33%">
-                                    </td>
-                                    <td width="33%">
-                                    </td>
-                                    <td width="33%">
-                                    </td>
-                                </tr>
+                                {inputCheckout && inputCheckout.map((checkout, index) => (
+                                    <tr>
+                                        <td width="33%">
+                                            {checkout.somaTotal}
+                                        </td>
+                                        <td width="33%" style={{ color: 'red' }}>
+                                            {checkout.somaDesconto}
+                                        </td>
+                                        <td width="33%" style={{ color: 'green' }}>
+                                            <strong>{checkout.somaPagar}</strong>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
