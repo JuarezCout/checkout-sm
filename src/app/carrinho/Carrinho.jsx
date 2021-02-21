@@ -38,9 +38,9 @@ export default function Carrinho({ stripeTkon }) {
         ]
     );
 
-    /*      useEffect(() => {
-            console.log(document.getElementById("idProduto").value)
-        }, [document.getElementById("idProduto").value])  */
+    useEffect(() => {
+        document.getElementById("checkout").style.display = "none"
+    }, [inputCarrinho])
 
     function changeId(value) {
         console.log(value)
@@ -130,7 +130,7 @@ export default function Carrinho({ stripeTkon }) {
             somaTotal = somaTotal + (valor * qtd);
             somaDesconto = somaDesconto + ((somaTotal * desc) / 100);
         }
-        somaPagar = addZeros((somaTotal-somaDesconto) / 100);
+        somaPagar = addZeros((somaTotal - somaDesconto) / 100);
         somaTotal = addZeros(somaTotal / 100);
         somaDesconto = addZeros(somaDesconto / 100);
         setInputCheckout([{ somaTotal: somaTotal, somaDesconto: somaDesconto, somaPagar: somaPagar }])
